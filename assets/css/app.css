@@ -1,0 +1,213 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+:root {
+    --white-color: #fff;
+    --gray-color: #666666;
+    --body-color: #2e364a;
+
+    --fw-regular: 400;
+    --fw-medium: 500;
+    --fw-semibold: 600;
+    --fw-bold: 700;
+
+    --zi-tooltip: 10;
+    --zi-underlay: -1;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+}
+
+body {
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--body-color);
+}
+
+.timeline {
+    position: relative;
+    width: 100%;
+    max-width: 1100px;
+    margin: 6.25rem auto;
+}
+
+.timeline__item {
+    position: relative;
+    padding: 0.625rem 3.125rem;
+    width: 50%;
+    opacity: 0;
+    animation: reveal 1s linear forwards;
+}
+
+.timeline__content {
+    position: relative;
+    background-color: var(--white-color);
+    padding: 1.25rem 1.875rem;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.timeline__item--left {
+    left: 0;
+}
+
+.timeline__item--right {
+    left: 50%;
+}
+
+.timeline__icon {
+    position: absolute;
+    font-size: 2.5rem;
+    right: -1.25rem;
+    top: 2rem;
+    z-index: var(--zi-tooltip);
+}
+
+.timeline__icon::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    right: -4px;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    background-color: var(--white-color);
+    z-index: var(--zi-underlay);
+}
+
+.timeline__item--right > .timeline__icon {
+    left: -1.25rem;
+}
+
+.timeline__item--right > .timeline__icon::after  {
+    left: -0.25rem;
+}
+
+.timeline__title {
+    font-weight: var(--fw-semibold);
+}
+
+.timeline__date {
+    display: inline-block;
+    margin-bottom: 0.9375rem;
+    color: var(--gray-color);
+}
+
+.timeline__description {
+    color: #333;
+}
+
+/* timeline triangle arrow */
+.timeline__content::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    top: 28px;
+    right: -15px;
+    z-index: 1;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    border-left: 15px solid var(--white-color);
+}
+
+.timeline__item--right .timeline__content::after {
+    left: -15px;
+    border-left: 0;
+    border-right: 15px solid var(--white-color);
+}
+
+/* timeline vertical line */
+.timeline::after {
+    content: '';
+    position: absolute;
+    width: 6px;
+    height: 100%;
+    background-color: var(--white-color);
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: var(--zi-underlay);
+    animation: movedown 6s linear forwards;
+}
+
+/* timeline animation */
+@keyframes movedown {
+    0% {height: 0;}
+    100% {height: 100%;}
+}
+
+/* timeline item */
+@keyframes reveal {
+    0% {opacity: 1; transform: translateY(-30px);}
+    100% {opacity: 1; transform: translateY(0);}
+}
+
+.timeline__item:nth-child(1) { 
+    animation-delay: 0;
+}
+.timeline__item:nth-child(2) { 
+    animation-delay: 1s;
+}
+.timeline__item:nth-child(3) { 
+    animation-delay: 2s;
+}
+.timeline__item:nth-child(4) { 
+    animation-delay: 3s;
+}
+.timeline__item:nth-child(5) { 
+    animation-delay: 4s;
+}
+.timeline__item:nth-child(6) { 
+    animation-delay: 5s;
+}
+
+/* mobile */
+@media (max-width: 768px) {
+    .timeline {
+        margin: 3.125rem auto;
+    }
+
+    .timeline::after {
+        left: 1.9375rem;
+    }
+
+    .timeline__item {
+        width: 100%;
+        padding-inline: 5rem 1.5625rem;
+    }
+
+    .timeline__content {
+        font-size: 0.935rem;
+    }
+
+    .timeline__date {
+        margin-bottom: 0.625rem;
+    }
+
+    .timeline__item--right {
+        left: 0;
+    }
+
+    .timeline__item--left > .timeline__icon,
+    .timeline__item--right > .timeline__icon  {
+        left: 0.625rem;
+    }
+
+    .timeline__item--left > .timeline__icon::after,
+    .timeline__item--right > .timeline__icon::after  {
+        left: -4px;
+    }
+
+    .timeline__content::after {
+        left: -15px;
+    border-left: 0;
+    border-right: 15px solid var(--white-color);
+    }
+}
